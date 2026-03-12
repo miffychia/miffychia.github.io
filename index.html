@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Stories — Michelle Chia</title>
+
+  <!-- Montserrat from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&family=Pixelify+Sans:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Variables ─────────────────────────────────────────── */
+    :root {
+      --bg:          #FFF9EC;
+      --teal:        #4B9D8D;
+      --teal-btn:    #4B9D8D;
+      --green-box:   rgba(145, 189, 107, 0.20);
+      --green-border: rgba(145, 189, 107, 0.45);
+      --text:        #2d2d2d;
+      --text-light:  #555;
+      --font:        'Montserrat', sans-serif;
+      --project-img-w: 320px;
+      --project-img-h: 210px;
+    }
+
+    /* ── Reset & Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      font-family: var(--font);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ───────────────────────────────────────────────── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9em 3em;
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav-left a {
+      display: inline-block;
+      background: var(--teal-btn);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.82em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5em 1.2em;
+      border-radius: 3px;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .nav-left a:hover {
+      background: #3a8070;
+      transform: translateY(-1px);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75em;
+    }
+
+    .nav-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      overflow: hidden;
+    }
+    .nav-icon:hover { transform: translateY(-2px); opacity: 0.85; }
+
+    .nav-icon img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    /* ── BANNER ────────────────────────────────────────────── */
+    .banner {
+      background: var(--teal);
+      padding: 2.8em 3em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.4em;
+    }
+
+    .banner-icon {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+    }
+
+    .banner-title {
+      font-family: 'Pixelify Sans', 'Courier New', monospace;
+      font-weight: 600;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: #fff;
+      letter-spacing: 0.12em;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.12);
+      /* Dotted/pixelated effect via outline */
+      -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+    }
+
+    /* ── INTRO BOX ─────────────────────────────────────────── */
+    .intro-wrap {
+      padding: 3em 3em 2em;
+      display: flex;
+      justify-content: center;
+    }
+
+    .intro-box {
+      background: var(--green-box);
+      border: 1px dashed var(--green-border);
+      border-radius: 4px;
+      padding: 2em 3em;
+      max-width: 820px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Corner dots like the mockup */
+    .intro-box::before,
+    .intro-box::after {
+      content: '○';
+      position: absolute;
+      font-size: 0.6em;
+      color: var(--green-border);
+      top: 0.4em;
+    }
+    .intro-box::before { left: 0.8em; }
+    .intro-box::after  { right: 0.8em; }
+
+    .intro-box p {
+      font-size: 1em;
+      line-height: 1.85;
+      color: var(--text);
+    }
+
+    /* ── PROJECTS ──────────────────────────────────────────── */
+    .projects {
+      padding: 2.5em 3em 3em;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3em;
+    }
+
+    .project-row {
+      display: flex;
+      gap: 2.2em;
+      align-items: flex-start;
+    }
+
+    /* Image side */
+    .project-img-wrap {
+      flex-shrink: 0;
+      width: var(--project-img-w);
+    }
+
+    .project-img-wrap a {
+      display: block;
+    }
+
+    .project-img-wrap img {
+      width: var(--project-img-w);
+      height: var(--project-img-h);
+      object-fit: cover;
+      border: 2px solid #000;
+      border-radius: 2px;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+    .project-img-wrap a:hover img { opacity: 0.88; }
+
+    /* Text side */
+    .project-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-title {
+      font-size: 1.05em;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75em;
+      line-height: 1.35;
+    }
+
+    .project-title a {
+      transition: color 0.2s ease;
+    }
+    .project-title a:hover { color: var(--teal); }
+
+    .project-desc {
+      font-size: 0.92em;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .project-desc em {
+      display: block;
+      margin-top: 0.8em;
+      font-style: italic;
+      color: var(--text-light);
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────── */
+    footer {
+      padding: 3em 3em 2.5em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.8em;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 0.85em;
+      align-items: center;
+    }
+
+    .footer-box {
+      background: var(--green-box);
+      border: 1px dashed var(--green-border);
+      border-radius: 4px;
+      padding: 1.4em 3em;
+      max-width: 820px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .footer-box::before,
+    .footer-box::after {
+      content: '○';
+      position: absolute;
+      font-size: 0.6em;
+      color: var(--green-border);
+      top: 0.4em;
+    }
+    .footer-box::before { left: 0.8em; }
+    .footer-box::after  { right: 0.8em; }
+
+    .footer-box p {
+      font-size: 0.92em;
+      line-height: 1.85;
+      color: var(--text-light);
+    }
+
+    .footer-box a {
+      color: var(--teal);
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+    .footer-box a:hover { border-color: var(--teal); }
+
+    /* ── Page-load fade-in ─────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .banner        { animation: fadeUp 0.5s ease both; }
+    .intro-wrap    { animation: fadeUp 0.5s 0.15s ease both; }
+    .projects      { animation: fadeUp 0.5s 0.25s ease both; }
+    footer         { animation: fadeUp 0.5s 0.35s ease both; }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      nav        { padding: 0.8em 1.2em; }
+      .banner    { padding: 2em 1.2em; gap: 1em; }
+      .banner-title { font-size: 2rem; }
+      .banner-icon  { width: 46px; height: 46px; }
+      .intro-wrap, .projects, footer { padding-left: 1.2em; padding-right: 1.2em; }
+      .intro-box, .footer-box        { padding: 1.5em 1.2em; }
+
+      .project-row {
+        flex-direction: column;
+        gap: 1em;
+      }
+      .project-img-wrap,
+      .project-img-wrap img {
+        width: 100%;
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       NAV
+       ══════════════════════════════════ -->
+  <nav>
+    <div class="nav-left">
+      <a href="about.html">About Me</a>
+    </div>
+    <div class="nav-right">
+      <!-- Email -->
+      <a href="mailto:allmystuffisstored@gmail.com" class="nav-icon" title="Email me">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" />
+      </a>
+      <!-- GitHub -->
+      <a href="https://github.com/miffychia" target="_blank" class="nav-icon" title="GitHub">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" />
+      </a>
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/michellechiasg" target="_blank" class="nav-icon" title="LinkedIn">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════
+       BANNER
+       ══════════════════════════════════ -->
+  <div class="banner">
+    <!-- Chart emoji as stand-in for the bar-chart icon -->
+    <span class="banner-icon" style="font-size:3.6rem; line-height:1;">📊</span>
+    <h1 class="banner-title">Data Stories</h1>
+    <span class="banner-icon" style="font-size:3.2rem; line-height:1;">📖</span>
+  </div>
+
+  <!-- ══════════════════════════════════
+       INTRO BOX
+       ══════════════════════════════════ -->
+  <div class="intro-wrap">
+    <div class="intro-box">
+      <p>
+        Hello there,<br />
+        I am Michelle, a storyteller by instinct and analyst by discipline.<br />
+        This is where I share my data projects and thoughts about them.<br />
+        Check them out below!
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PROJECTS
+       ══════════════════════════════════ -->
+  <section class="projects">
+
+    <!-- Project 1: Currently working on -->
+    <div class="project-row">
+      <div class="project-img-wrap">
+        <a href="https://github.com/miffychia/current-project" target="_blank">
+          <img
+            src="https://placehold.co/320x210/d4e6e1/4B9D8D?text=Coming+Soon"
+            alt="Work in progress project"
+          />
+        </a>
+      </div>
+      <div class="project-text">
+        <h2 class="project-title">
+          <a href="https://github.com/miffychia/current-project" target="_blank">
+            Currently working on: Project Name
+          </a>
+        </h2>
+        <p class="project-desc">
+          Brief description of what this project is about.<br />
+          The description will take up to three lines.<br />
+          Add a line about how I feel about it.
+          <em>Stay tuned for updates!</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- Project 2: Capstone — Commute Burden -->
+    <div class="project-row">
+      <div class="project-img-wrap">
+        <a href="https://github.com/miffychia/commute-burden-analysis" target="_blank">
+          <img
+            src="assets/images/capstone_preview.jpg"
+            alt="Analysing Commute Burden in Singapore"
+            onerror="this.src='https://placehold.co/320x210/dde4e8/555?text=Capstone+Project'"
+          />
+        </a>
+      </div>
+      <div class="project-text">
+        <h2 class="project-title">
+          <a href="https://github.com/miffychia/commute-burden-analysis" target="_blank">
+            Analysing Commute Burden in Singapore
+          </a>
+        </h2>
+        <p class="project-desc">
+          Are you spending 45 minutes or more on your commute to work?<br /><br />
+          For my capstone project, I examine whether long commutes are due to
+          spatial reasons. (But what I found was surprising. 😳)
+        </p>
+      </div>
+    </div>
+
+    <!-- Project 3: HDB Resale -->
+    <div class="project-row">
+      <div class="project-img-wrap">
+        <a href="https://github.com/miffychia/hdb-resale" target="_blank">
+          <img
+            src="assets/images/hdb_preview.jpg"
+            alt="HDB Resale Market Transactions"
+            onerror="this.src='https://placehold.co/320x210/e8e4df/555?text=HDB+Resale'"
+          />
+        </a>
+      </div>
+      <div class="project-text">
+        <h2 class="project-title">
+          <a href="https://github.com/YOUR_USERNAME/hdb-resale" target="_blank">
+            HDB Resale Market Transactions
+          </a>
+        </h2>
+        <p class="project-desc">
+          Ever wondered what makes one HDB flat more expensive than another?<br /><br />
+          My group and I took on this 36-hour data sprint project to find out.
+        </p>
+      </div>
+    </div>
+
+    <!-- Project 4: US Elections -->
+    <div class="project-row">
+      <div class="project-img-wrap">
+        <a href="https://github.com/miffychia/us-elections" target="_blank">
+          <img
+            src="assets/images/elections_preview.jpg"
+            alt="US Presidential Elections 2000–2024"
+            onerror="this.src='https://placehold.co/320x210/f0ebe0/555?text=US+Elections'"
+          />
+        </a>
+      </div>
+      <div class="project-text">
+        <h2 class="project-title">
+          <a href="https://github.com/miffychia/us-elections" target="_blank">
+            US Presidential Elections (2000–2024)
+          </a>
+        </h2>
+        <p class="project-desc">
+          How did Americans vote at both the State and County-level?<br /><br />
+          I explored voting patterns, winning margins, and partisan flips
+          across seven elections.
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════
+       FOOTER
+       ══════════════════════════════════ -->
+  <footer>
+    <div class="footer-icons">
+      <a href="mailto:allmystuffisstored@gmail.com" class="nav-icon" title="Email me">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" />
+      </a>
+      <a href="https://github.com/miffychia" target="_blank" class="nav-icon" title="GitHub">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" />
+      </a>
+      <a href="https://linkedin.com/in/miffychiasg" target="_blank" class="nav-icon" title="LinkedIn">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
+      </a>
+    </div>
+
+    <div class="footer-box">
+      <p>
+        Check out more on my <a href="https://github.com/miffychia" target="_blank">GitHub</a>.<br />
+        Feel free to connect via <a href="https://linkedin.com/in/miffychiasg" target="_blank">LinkedIn</a>
+        or drop me an <a href="mailto:allmystuffisstored@gmail.com">email</a>!
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
