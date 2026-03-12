@@ -294,7 +294,10 @@
       nav        { padding: 0.8em 1.2em; }
       .banner    { padding: 2em 1.2em; gap: 1em; }
       .banner-title { font-size: 2rem; }
-      .banner-icon  { width: 46px; height: 46px; }
+      .banner-icon  { height: 72px;
+                      width: auto;
+                      flex-shrink: 0; 
+                    }
       .intro-wrap, .projects, footer { padding-left: 1.2em; padding-right: 1.2em; }
       .intro-box, .footer-box        { padding: 1.5em 1.2em; }
 
@@ -340,9 +343,9 @@
        ══════════════════════════════════ -->
   <div class="banner">
     <!-- Chart emoji as stand-in for the bar-chart icon -->
-    <span class="banner-icon" style="font-size:3.6rem; line-height:1;">📊</span>
+    <img src="assets/images/bar_chart.PNG" alt="Bar chart graphic" class="banner-icon" />
     <h1 class="banner-title">Data Stories</h1>
-    <span class="banner-icon" style="font-size:3.2rem; line-height:1;">📖</span>
+    <img src="assets/images/story.PNG" alt="Story graphic" class="banner-icon" />
   </div>
 
   <!-- ══════════════════════════════════
